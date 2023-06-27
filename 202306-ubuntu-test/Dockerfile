@@ -2,8 +2,10 @@ FROM ubuntu:latest
 
 RUN sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list
 
-RUN apt-get update && \
-    apt-get install -y vim build-essential git python3 python3-dev python3-setuptools libcap-dev libssl-dev libldap2-dev libgpgme11-dev libavahi-client-dev libacl1-dev libarchive-dev libattr1-dev libblkid-dev libgnutls28-dev libreadline-dev pkg-config wget
+RUN apt-get update
+RUN apt-get install -y vim build-essential git python3 python3-dev python3-setuptools libcap-dev libssl-dev libldap2-dev
+RUN apt-get install -y libgpgme11-dev libavahi-client-dev libacl1-dev libarchive-dev libattr1-dev libblkid-dev libgnutls28-dev libreadline-dev 
+RUN apt-get install -y pkg-config wget
 
 RUN wget https://download.samba.org/pub/samba/stable/samba-4.14.6.tar.gz && \
     tar -xvf samba-4.14.6.tar.gz && \
