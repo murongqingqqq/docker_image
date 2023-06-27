@@ -1,0 +1,39 @@
+安装依赖：
+yum install -y python3 python3-devel perl-Parse-Yapp libtasn1-devel libunistring-devel
+
+nettle: 3.4.1
+
+yum remove nettle*
+
+./configure
+make
+make install
+
+ln -s /usr/local/lib64/pkgconfig/nettle.pc /usr/lib64/pkgconfig/nettle.pc
+ln -s /usr/local/lib64/pkgconfig/hogweed.pc /usr/lib64/pkgconfig/hogweed.pc
+
+ln -sf /usr/local/lib64/libnettle.so /usr/lib64/libnettle.so
+ln -sf /usr/local/lib64/libnettle.so.6 /usr/lib64/libnettle.so.6
+ln -sf /usr/local/lib64/libhogweed.so  /usr/lib64/libhogweed.so 
+ln -sf /usr/local/lib64/libhogweed.so.4 /usr/lib64/libhogweed.so.4
+
+
+
+pkg-config --modversion nettle
+
+gnutls: 3.6.4
+
+./configure  --without-p11-kit 
+
+make
+make install
+
+###创建软连接，把文件链接到系统目录下####
+ln -sf /usr/local/lib/pkgconfig/gnutls.pc /usr/lib64/pkgconfig/gnutls.pc
+ln -sf /usr/local/lib/libgnutls.so /usr/lib64/libgnutls.so
+ln -sf /usr/local/lib/libgnutls.so.30 /usr/lib64/libgnutls.so.30
+##检查gnutls的版本##
+pkg-config --modversion gnutls
+
+samba:
+./configure --disable-python --without-ad-dc --without-json --without-libarchive
